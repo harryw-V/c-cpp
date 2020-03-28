@@ -1,0 +1,39 @@
+# c-cpp
+HW c++
+```
+#include<iostream>
+//cout  cin 
+#include<algorithm>
+//stable_sort()
+#include<vector>
+//class vector<int>
+using namespace std;
+int N;
+vector<int>a;
+int hp;
+int frist,last;
+int main(){
+	cin>>N;
+	for(int i=0;i<N;++i){
+		cin>>hp;
+		a.push_back(hp);
+	}
+	hp=0;
+	/*此题为堆的经典例题，本程序
+	演示的是由堆计算到贪心算法的
+	一般性方法*/
+	/*先取最小两个，合并，记录，
+	把合出的分类记录，删除先取的
+	最小两个*/ 
+	for(int i=0;i<N-1;++i){
+		stable_sort(a.begin(),a.begin()+a.size());
+		/*因为vector<int>a一般(见程序)几乎有序
+		所以用sort(O(n^2))会超时，stable_sort
+		排序相对稳定*/
+		hp+=(a[0]+a[1]);
+		a.push_back(a[0]+a[1]);
+		a.erase(a.begin());a.erase(a.begin());
+	}
+	cout<<hp;
+}
+```
